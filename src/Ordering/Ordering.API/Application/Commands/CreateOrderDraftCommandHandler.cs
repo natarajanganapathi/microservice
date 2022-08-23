@@ -6,13 +6,13 @@ public class CreateOrderDraftCommandHandler : IRequestHandler<CreateOrderDraftCo
 {
     // private readonly IOrderRepository _orderRepository;
     // private readonly IIdentityService _identityService;
-    private readonly IMediator _mediator;
+    // private readonly IMediator _mediator;
 
     // Using DI to inject infrastructure persistence Repositories
-    public CreateOrderDraftCommandHandler(IMediator mediator) //  IIdentityService identityService
+    public CreateOrderDraftCommandHandler() //  IMediator mediator, IIdentityService identityService
     {
         // _identityService = identityService ?? throw new ArgumentNullException(nameof(identityService));
-        _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+        // _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
     }
 
     public Task<OrderDraftDTO> Handle(CreateOrderDraftCommand message, CancellationToken cancellationToken)
