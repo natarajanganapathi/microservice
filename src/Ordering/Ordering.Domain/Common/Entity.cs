@@ -37,7 +37,7 @@ public abstract class Entity
 
     public bool IsTransient()
     {
-        return this.Id == default(Int32);
+        return Id == default(Int32);
     }
 
     public override bool Equals(object obj)
@@ -53,27 +53,27 @@ public abstract class Entity
 
         Entity item = (Entity)obj;
 
-        if (item.IsTransient() || this.IsTransient())
+        if (item.IsTransient() || IsTransient())
             return false;
         else
-            return item.Id == this.Id;
+            return item.Id == Id;
     }
 
     public override int GetHashCode()
-    {
-        if (!IsTransient())
         {
-            if (!_requestedHashCode.HasValue)
+            if (!IsTransient())
             {
-                _requestedHashCode = this.Id.GetHashCode() ^ 31; // XOR for random distribution (http://blogs.msdn.com/b/ericlippert/archive/2011/02/28/guidelines-and-rules-for-gethashcode.aspx)
+                if (!_requestedHashCode.HasValue)
+                {
+                    _requestedHashCode = Id.GetHashCode() ^ 31; // XOR for random distribution (http://blogs.msdn.com/b/ericlippert/archive/2011/02/28/guidelines-and-rules-for-gethashcode.aspx)
+                }
+                return _requestedHashCode.Value;
             }
-            return _requestedHashCode.Value;
+            else
+            {
+                return GetHashCode();
+            }
         }
-        else
-        {
-            return base.GetHashCode();
-        }
-    }
     public static bool operator ==(Entity left, Entity right)
     {
         if (Object.Equals(left, null))
@@ -87,4 +87,3 @@ public abstract class Entity
         return !(left == right);
     }
 }
-

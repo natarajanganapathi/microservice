@@ -100,6 +100,6 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
-          file: "{{context}}/src/Ordering/Ordering.API/Dockerfile"
+          file: "src/Ordering/Ordering.API/Dockerfile"
           push: true
           tags: ghcr.io/natarajanganapathi/ordering-service:latest
