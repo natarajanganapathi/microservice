@@ -16,7 +16,7 @@ public class Order : Entity, IAggregateRoot
     public OrderStatus OrderStatus { get; private set; }
     private int _orderStatusId;
 
-    private string _description;
+    private string? _description;
 
     // Draft orders have this set to true. Currently we don't check anywhere the draft status of an Order, but we could do it if needed
     private bool _isDraft;

@@ -101,4 +101,4 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: ghcr.io/natarajanmca11/ordering-service:latest
+          tags: ghcr.io/natarajanganapathi/ordering-service:latest
