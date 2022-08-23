@@ -1,0 +1,12 @@
+global using System;
+global using System.Collections.Generic;
+global using System.Threading.Tasks;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore.Storage;
+global using Microsoft.EntityFrameworkCore.Metadata.Builders;
+global using EventBus.Events;
+global using System.Data.Common;
+global using System.Linq;
+global using System.Reflection;
+global using Newtonsoft.Json;
+global using System.ComponentModel.DataAnnotations.Schema;
