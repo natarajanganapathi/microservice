@@ -125,7 +125,7 @@ public class OrdersController : ControllerBase
 
     [Route("draft")]
     [HttpPost]
-    public async Task<ActionResult<OrderDraftDTO>> CreateOrderDraftFromBasketDataAsync([FromBody] CreateOrderDraftCommand createOrderDraftCommand)
+    public async Task<ActionResult<OrderDraftDto>> CreateOrderDraftFromBasketDataAsync([FromBody] CreateOrderDraftCommand createOrderDraftCommand)
     {
         _logger.LogInformation(
             "----- Sending command: {CommandName} - {IdProperty}: {CommandId} ({@Command})",

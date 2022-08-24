@@ -1,8 +1,7 @@
 ﻿namespace Ordering.API.Application.Commands;
 
-
 // Regular CommandHandler
-public class CreateOrderDraftCommandHandler : IRequestHandler<CreateOrderDraftCommand, OrderDraftDTO>
+public class CreateOrderDraftCommandHandler : IRequestHandler<CreateOrderDraftCommand, OrderDraftDto>
 {
     // private readonly IOrderRepository _orderRepository;
     // private readonly IIdentityService _identityService;
@@ -15,9 +14,8 @@ public class CreateOrderDraftCommandHandler : IRequestHandler<CreateOrderDraftCo
         // _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
     }
 
-    public Task<OrderDraftDTO> Handle(CreateOrderDraftCommand message, CancellationToken cancellationToken)
+    public Task<OrderDraftDto> Handle(CreateOrderDraftCommand message, CancellationToken cancellationToken)
     {
-
         var order = Ordering.Domain.AggregatesModel.Order.NewDraft();
         var orderItems = message.Items.Select(i => i.ToOrderItemDTO());
         foreach (var item in orderItems)
@@ -25,19 +23,18 @@ public class CreateOrderDraftCommandHandler : IRequestHandler<CreateOrderDraftCo
             order.AddOrderItem(item.ProductId, item.ProductName, item.UnitPrice, item.Discount, item.PictureUrl, item.Units);
         }
 
-        return Task.FromResult(OrderDraftDTO.FromOrder(order));
+        return Task.FromResult(OrderDraftDto.FromOrder(order));
     }
 }
 
-
-public class OrderDraftDTO
+public class OrderDraftDto
 {
-    public IEnumerable<OrderItemDTO> OrderItems { get; set; }
+    public IEnumerable<OrderItemDTO>? OrderItems { get; set; }
     public decimal Total { get; set; }
 
-    public static OrderDraftDTO FromOrder(Ordering.Domain.AggregatesModel.Order order)
+    public static OrderDraftDto FromOrder(Ordering.Domain.AggregatesModel.Order order)
     {
-        return new OrderDraftDTO()
+        return new OrderDraftDto()
         {
             OrderItems = order.OrderItems.Select(oi => new OrderItemDTO
             {
@@ -51,5 +48,4 @@ public class OrderDraftDTO
             Total = order.GetTotal()
         };
     }
-
 }

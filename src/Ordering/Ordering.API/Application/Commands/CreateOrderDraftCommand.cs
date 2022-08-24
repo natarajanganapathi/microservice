@@ -1,7 +1,5 @@
-﻿using static Ordering.API.Application.Commands.CreateOrderCommand;
-
-namespace Ordering.API.Application.Commands;
-public class CreateOrderDraftCommand : IRequest<OrderDraftDTO>
+﻿namespace Ordering.API.Application.Commands;
+public class CreateOrderDraftCommand : IRequest<OrderDraftDto>
 {
 
     public string BuyerId { get; private set; }

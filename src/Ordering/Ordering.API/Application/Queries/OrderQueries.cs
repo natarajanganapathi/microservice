@@ -62,7 +62,7 @@ public class OrderQueries : IOrderQueries
         }
     }
 
-    private Order MapOrderItems(dynamic result)
+    private static Order MapOrderItems(dynamic result)
     {
         var order = new Order
         {

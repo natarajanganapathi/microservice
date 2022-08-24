@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+
+  sqldata:
+    environment:
+      - SA_PASSWORD=Pass@word
+      - ACCEPT_EULA=Y
+    image: mcr.microsoft.com/mssql/server:2022-latest 
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+
+  ordering-api:
+    image: ${REGISTRY:-eshop}/ordering.api:${PLATFORM:-linux}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: Services/Ordering/Ordering.API/Dockerfile
+    depends_on:
+      - sqldata
+      - rabbitmq
